@@ -3,24 +3,36 @@
 <!-- head extension -->
 {% block head %}
 <title>Posts</title>
+<nav class="navbar navbar-light bg-warning">
+    <a class="navbar-brand" href="/">The Blog</a>
+  </nav>
 {% endblock %}
-
 <!-- body extension  -->
-
+<div></div>
 {% block body %}
-<h2>Create new Post:</h2>
-<a href="/posts/new">Create New Post</a>
- 
-<h2>All Posts</h2>
-{% for post in posts%}
-<h2>Title: {{ post.title }}</h2>
-{% if post.author %}
-<small>Author: {{ post.author }} {{post.date_created}}</small>
-{%else%}
-<h5>Author: N/A</h5>
+<br>
+<a button type="button" class="btn btn-success"   href="/posts/new">+ Create New Post</a>
 
-{%endif%}
-<p>Content: {{ post.content }}</p>
-<a href="/posts/delete/{{post.id}}">Delete</a>
-<a href="/posts/edit/{{post.id}}">Edit</a>
-{% endfor %} {% endblock %}
+
+<h2></h2>
+<h1 class="display-4">All Posts</h1>    
+<div  class="alert alert-dark">
+    <div class="container">
+         {% for post in posts %}
+             <h3 >Title: {{ post.title }}</h3>
+         {% if post.author %}
+             <h4>Author: {{ post.author }} </h4>
+             <small>Date Created: {{post.date_created}}</small>
+         {%else%}
+            <h4>Author: N/A</h4>
+         {%endif%}
+        <p class="lead" >Content: {{ post.content }}</p>
+            <a button type="button" class="btn btn-danger"  href="/posts/delete/{{post.id}}">Delete</a>
+            <a button type="button" class="btn btn-warning"  href="/posts/edit/{{post.id}}">Edit</a>
+        <hr>
+        {% endfor %} 
+        {% endblock %}  
+    </div>
+</div>
+<hr>
+</div>
