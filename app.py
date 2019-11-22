@@ -4,8 +4,8 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-app.config[
-    'SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'  #   /// means a relative path, //// means it is a absolute path.
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'  #   /// means a relative path, //// means it is a absolute path.
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 #creating the database file
 db = SQLAlchemy(app)
@@ -86,6 +86,26 @@ def edit(id):
         return redirect('/posts')
     else:
         return render_template('edit.html', post=post)
+
+@app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
+
+
+@app.route('/posts/new', methods=['GET', 'POST'])
+def new_post():
+    if request.method == 'POST':
+        post_title = request.form['title']
+        post_content = request.form['content']
+        post_author = request.form['author']
+        new_post = BlogPost(title=post_title,
+                            content=post_content,
+                            author=post_author)
+        db.session.add(
+            new_post)  # session.add only saves the data for temporary use.
+        db.session.commit()  # to save the data always commit the database.
+        return redirect('/posts')
+    else:
+        all_posts = BlogPost.query.order_by(BlogPost.date_created).all()
+    return render_template('new_post.html')
 
 
 if __name__ == "__main__":

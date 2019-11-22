@@ -8,25 +8,14 @@
 <!-- body extension  -->
 
 {% block body %}
-<h2>All Posts</h2>
-
-<hr />
 <h2>Create new Post:</h2>
-<form action="/posts" method="POST">
-  Title: <input type="text" name="title" id="title" />
-  <br />
-  Post: <input type="text" name="content" id="content" />
-  <br />
-  Author: <input type="text" name="author" id="author" />
-
-  <input type="Submit" value="post" />
-</form>
-<hr />
-
+<a href="/posts/new">Create New Post</a>
+ 
+<h2>All Posts</h2>
 {% for post in posts%}
 <h2>Title: {{ post.title }}</h2>
 {% if post.author %}
-<h5>Author: {{ post.author }}</h5>
+<small>Author: {{ post.author }} {{post.date_created}}</small>
 {%else%}
 <h5>Author: N/A</h5>
 
