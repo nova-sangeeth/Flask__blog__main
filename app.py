@@ -33,7 +33,6 @@ class BlogPost(db.Model):
 #         'title': 'Post 1',
 #         'content': 'This is the content of post 1',
 #         'author': 'Nova Sangeeth'
-
 #     },
 #     {
 #         'title': 'Post 2',
@@ -87,7 +86,7 @@ def edit(id):
     else:
         return render_template('edit.html', post=post)
 
-@app.route('/posts/edit/<int:id>', methods=['GET', 'POST'])
+
 
 
 @app.route('/posts/new', methods=['GET', 'POST'])

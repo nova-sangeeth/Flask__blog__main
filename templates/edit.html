@@ -6,7 +6,8 @@
 {% endblock %}
 
 {% block body %}
-    <hr>
+    <br>
+    <br>
     <h2 class="display-4">Edit Your Post...</h2>
         <form  action='/posts/edit/{{post.id}}' method='POST'>
             
@@ -18,7 +19,7 @@
               <br>
               <p class="lead">Content:</p>
             <br>
-            <textarea class="form-control" name='content' id="content" rows="3" value= "{{post.content}}"></textarea>
+            <textarea class="form-control" name='content' id="content" rows="3" >{{post.content}}</textarea>
             <br>
             <center>
             <button type="submit" class="btn btn-success"  value='Save'>Save</button>
