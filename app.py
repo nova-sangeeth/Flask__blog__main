@@ -2,12 +2,15 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'  #   /// means a relative path, //// means it is a absolute path.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 #creating the database file
+
+
 db = SQLAlchemy(app)
 
 
@@ -24,10 +27,17 @@ class BlogPost(db.Model):
 
     def __repr__(self):
         return 'Blog Post' + str(self.id)
+        
 
+# model for the user authentication
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100), unique=True)
+    name = db.Column(db.String(100))
 
 # always add a comma to seperate the content in the dictionary.
-
 # all_posts = [
 #     {
 #         'title': 'Post 1',
@@ -38,9 +48,9 @@ class BlogPost(db.Model):
 #         'title': 'Post 2',
 #         'content': 'This is the content of post 2'
 #     }
-
-
 # ]
+
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -85,9 +95,6 @@ def edit(id):
         return redirect('/posts')
     else:
         return render_template('edit.html', post=post)
-
-
-
 
 @app.route('/posts/new', methods=['GET', 'POST'])
 def new_post():
