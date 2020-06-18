@@ -5,33 +5,33 @@
 <title>Posts</title>
 <nav class="navbar navbar-light bg-muted">
     <a class="navbar-brand" href="/">The Blog</a>
-  </nav>
+</nav>
 {% endblock %}
 <!-- body extension  -->
 <div></div>
 {% block body %}
 <br>
-<a button type="button" class="btn btn-success"   href="/posts/new">+ Create New Post</a>
+<a button type="button" class="btn btn-success" href="/posts/new">+ Create New Post</a>
 
 
 <h2></h2>
-<h1 class="display-4">All Posts</h1>    
-<div  class="alert alert-dark">
+<h1 class="display-4">All Posts</h1>
+<div class="alert alert-dark">
     <div class="container">
-         {% for post in posts %}
-             <h3 >Title: {{ post.title }}</h3>
-         {% if post.author %}
-             <h4>Author: {{ post.author }} </h4>
-             <small>Date/Time Created: {{post.date_created}}</small>
-         {%else%}
-            <h4>Author: N/A</h4>
-         {%endif%}
-        <p class="lead" >Content: {{ post.content }}</p>
-            <a button type="button" class="btn btn-danger"  href="/posts/delete/{{post.id}}">Delete</a>
-            <a button type="button" class="btn btn-warning"  href="/posts/edit/{{post.id}}">Edit</a>
+        {% for post in posts %}
+        <h3>Title: {{ post.title }}</h3>
+        {% if post.author %}
+        <h4>Author: {{ post.author }} </h4>
+        <small>Date/Time Created: {{post.date_created}}</small>
+        {%else%}
+        <h4>Author: N/A</h4>
+        {%endif%}
+        <p class="lead">Content: {{ post.content }}</p>
+        <a button type="button" class="btn btn-danger" href="/posts/delete/{{post.id}}">Delete</a>
+        <a button type="button" class="btn btn-warning" href="/posts/edit/{{post.id}}">Edit</a>
         <hr>
-        {% endfor %} 
-        {% endblock %}  
+        {% endfor %}
+        {% endblock %}
     </div>
 </div>
 <hr>
